@@ -6,7 +6,7 @@ b = 4
 c = 7
 d = 8
 x = 29
-allnumbers = [["a","b","c","d"],["a","b"],["a","d"],["a","c"],["c","d"],["b","c"],["a","b","c"],["a","b","d"],["b","c","d"],["a","c","d"]]
+numbers = ["a","b","c","d"]
 target = x
 operators = ["+", "-", "*", "/", "**"]        
 
@@ -20,11 +20,10 @@ def eval_formula(formula):
             if formula.count('**') < 2:
                 print('err: ' + formula)
             pass
-        
-for numbers in allnumbers:
-    for values in permutations(numbers, len(numbers)):
+for n in range(2,len(numbers)+1):
+    for values in permutations(numbers, n):
         for oper in product(operators, repeat=len(numbers) - 1):
-            if len(numbers) == 3:
+            if n == 3:
                 ## pattern (a oper b) oper c
                 valuesWithBracket = ["(" + values[0], values[1] + ")", values[2]]
                 formula = "".join(o + v for o, v in zip([""] + list(oper), valuesWithBracket))
@@ -33,7 +32,7 @@ for numbers in allnumbers:
                 valuesWithBracket = [values[0], "(" + values[1], values[2] + ")"]
                 formula = "".join(o + v for o, v in zip([""] + list(oper), valuesWithBracket))
                 eval_formula(formula)
-            if len(numbers) == 4:
+            if n == 4:
                 ## pattern (a oper b) oper c oper d
                 valuesWithBracket = ["(" + values[0], values[1] + ")", values[2], values[3]]
                 formula = "".join(o + v for o, v in zip([""] + list(oper), valuesWithBracket))
