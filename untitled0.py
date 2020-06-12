@@ -5,9 +5,8 @@ a = 2
 b = 4
 c = 7
 d = 8
-x = 29
+target = 29
 numbers = ["a","b","c","d"]
-target = x
 operators = ["+", "-", "*", "/", "**"]        
 
 def eval_formula(formula):
@@ -20,6 +19,8 @@ def eval_formula(formula):
             if formula.count('**') < 2:
                 print('err: ' + formula)
             pass
+        
+        
 for n in range(2,len(numbers)+1):
     for values in permutations(numbers, n):
         for oper in product(operators, repeat=len(numbers) - 1):
